@@ -35,6 +35,141 @@ lake_data = {
                 "cloudy": ["Chatterbaits", "Texas rig", "Crankbaits"]
             }
         }
+    },
+    "Lake Norman": {
+        "spring": {
+            "clear": {
+                "sunny": ["Finesse swimbaits", "Jerkbaits", "Shaky head"],
+                "cloudy": ["Spinnerbaits", "Ned rig", "Chatterbaits"]
+            },
+            "stained": {
+                "sunny": ["Jigs", "Creature baits", "Spinnerbaits"],
+                "cloudy": ["Chatterbaits", "Squarebills", "Buzzbaits"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shot", "Spybaits", "Topwater (early/late)"],
+                "cloudy": ["Underspins", "Soft jerkbaits", "Swim jigs"]
+            },
+            "stained": {
+                "sunny": ["Texas rig", "Buzzbaits", "Crankbaits"],
+                "cloudy": ["Chatterbaits", "Jigs", "Squarebills"]
+            }
+        }
+    },
+    "Lake Wylie": {
+        "spring": {
+            "clear": {
+                "sunny": ["Alabama rigs", "Jerkbaits", "Swimbaits"],
+                "cloudy": ["Spinnerbaits", "Square-billed crankbaits", "Jigs"]
+            },
+            "stained": {
+                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            },
+            "stained": {
+                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
+            }
+        }
+    },
+    "Lake Hartwell": {
+        "spring": {
+            "clear": {
+                "sunny": ["Jerkbaits", "Carolina rigs", "Swimbaits"],
+                "cloudy": ["Lipless crankbaits", "Spinnerbaits", "Jigs"]
+            },
+            "stained": {
+                "sunny": ["Chatterbaits", "Square-billed crankbaits", "Jigs"],
+                "cloudy": ["Spinnerbaits", "Texas rigs", "Crankbaits"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shots", "Shaky heads", "Deep-diving crankbaits"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            },
+            "stained": {
+                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
+            }
+        }
+    },
+    "Lake Lanier": {
+        "spring": {
+            "clear": {
+                "sunny": ["Jerkbaits", "Swimbaits", "Spinnerbaits"],
+                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
+            },
+            "stained": {
+                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            },
+            "stained": {
+                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
+            }
+        }
+    },
+    "Lake Clarks Hill": {
+        "spring": {
+            "clear": {
+                "sunny": ["Jerkbaits", "Swimbaits", "Spinnerbaits"],
+                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
+            },
+            "stained": {
+                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            },
+            "stained": {
+                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
+            }
+        }
+    },
+    "Lake Murray": {
+        "spring": {
+            "clear": {
+                "sunny": ["Jerkbaits", "Swimbaits", "Topwater lures"],
+                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
+            },
+            "stained": {
+                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shots", "Shaky heads", "Topwater lures"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            },
+            "stained": {
+                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
+                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
+            }
+        }
+    }
+}
+        }
     }
     # You can expand this dictionary to include all other lakes as we did earlier
 }

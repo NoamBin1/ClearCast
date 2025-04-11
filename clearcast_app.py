@@ -169,10 +169,6 @@ lake_data = {
         }
     }
 }
-        }
-    }
-    # You can expand this dictionary to include all other lakes as we did earlier
-}
 
 def get_weather(lat, lon):
     try:
@@ -183,7 +179,7 @@ def get_weather(lat, lon):
     except:
         return "unknown"
 
-# --- Streamlit Interface ---
+# --- Streamlit App ---
 st.set_page_config(page_title="ClearCast", layout="centered")
 st.title("🎣 ClearCast – Smart Lure Picker")
 
@@ -199,10 +195,19 @@ else:
     weather = "sunny"
 
 if st.button("Find Lures"):
-    try:
-        lures = lake_data[lake][season][clarity][weather]
-        st.markdown("### Recommended Lures:")
-        for lure in lures:
-            st.write(f"- {lure}")
-    except KeyError:
-        st.error("No lure data for that combination yet.")
+    if lake in lake_data:
+        if season in lake_data[lake]:
+            if clarity in lake_data[lake][season]:
+                if weather in lake_data[lake][season][clarity]:
+                    lures = lake_data[lake][season][clarity][weather]
+                    st.markdown("### Recommended Lures:")
+                    for lure in lures:
+                        st.write(f"- {lure}")
+                else:
+                    st.warning("No data for that weather condition. Try sunny or cloudy.")
+            else:
+                st.warning("No data for that water clarity.")
+        else:
+            st.warning("No data for that season.")
+    else:
+        st.warning("No data for that lake.")

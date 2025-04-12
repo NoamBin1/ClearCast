@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import datetime
 
 API_KEY = "e4645f9e139082f99ac7c6f704fc9044"
 
@@ -13,201 +14,77 @@ lake_coords = {
     "Lake Murray": (34.0490, -81.2162)
 }
 
-lake_data = {
-    "Lake Keowee": {
-        "spring": {
-            "clear": {
-                "sunny": ["Swimbaits", "Jerkbaits", "Ned rig"],
-                "cloudy": ["Spinnerbaits", "Chatterbaits", "Finesse jigs"]
-            },
-            "stained": {
-                "sunny": ["Texas rig", "Jigs", "Spinnerbaits"],
-                "cloudy": ["Chatterbaits", "Creature baits", "Squarebills"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shot", "Shaky head", "Topwater (early/late)"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rig", "Crankbaits"]
-            }
-        }
-    },
-    "Lake Norman": {
-        "spring": {
-            "clear": {
-                "sunny": ["Finesse swimbaits", "Jerkbaits", "Shaky head"],
-                "cloudy": ["Spinnerbaits", "Ned rig", "Chatterbaits"]
-            },
-            "stained": {
-                "sunny": ["Jigs", "Creature baits", "Spinnerbaits"],
-                "cloudy": ["Chatterbaits", "Squarebills", "Buzzbaits"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shot", "Spybaits", "Topwater (early/late)"],
-                "cloudy": ["Underspins", "Soft jerkbaits", "Swim jigs"]
-            },
-            "stained": {
-                "sunny": ["Texas rig", "Buzzbaits", "Crankbaits"],
-                "cloudy": ["Chatterbaits", "Jigs", "Squarebills"]
-            }
-        }
-    },
-    "Lake Wylie": {
-        "spring": {
-            "clear": {
-                "sunny": ["Alabama rigs", "Jerkbaits", "Swimbaits"],
-                "cloudy": ["Spinnerbaits", "Square-billed crankbaits", "Jigs"]
-            },
-            "stained": {
-                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
-            }
-        }
-    },
-    "Lake Hartwell": {
-        "spring": {
-            "clear": {
-                "sunny": ["Jerkbaits", "Carolina rigs", "Swimbaits"],
-                "cloudy": ["Lipless crankbaits", "Spinnerbaits", "Jigs"]
-            },
-            "stained": {
-                "sunny": ["Chatterbaits", "Square-billed crankbaits", "Jigs"],
-                "cloudy": ["Spinnerbaits", "Texas rigs", "Crankbaits"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shots", "Shaky heads", "Deep-diving crankbaits"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
-            }
-        }
-    },
-    "Lake Lanier": {
-        "spring": {
-            "clear": {
-                "sunny": ["Jerkbaits", "Swimbaits", "Spinnerbaits"],
-                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
-            },
-            "stained": {
-                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
-            }
-        }
-    },
-    "Lake Clarks Hill": {
-        "spring": {
-            "clear": {
-                "sunny": ["Jerkbaits", "Swimbaits", "Spinnerbaits"],
-                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
-            },
-            "stained": {
-                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shots", "Shaky heads", "Topwater (early/late)"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
-            }
-        }
-    },
-    "Lake Murray": {
-        "spring": {
-            "clear": {
-                "sunny": ["Jerkbaits", "Swimbaits", "Topwater lures"],
-                "cloudy": ["Crankbaits", "Chatterbaits", "Finesse jigs"]
-            },
-            "stained": {
-                "sunny": ["Lipless crankbaits", "Spinnerbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Square-billed crankbaits", "Jigs"]
-            }
-        },
-        "summer": {
-            "clear": {
-                "sunny": ["Drop shots", "Shaky heads", "Topwater lures"],
-                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
-            },
-            "stained": {
-                "sunny": ["Spinnerbaits", "Buzzbaits", "Jigs"],
-                "cloudy": ["Chatterbaits", "Texas rigs", "Crankbaits"]
-            }
-        }
-    }
-}
+# Basic example using in-memory list. Replace with database or file later if needed.
+if "catch_log" not in st.session_state:
+    st.session_state["catch_log"] = []
 
 def get_weather(lat, lon):
     try:
-        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}"
+        url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=imperial"
         response = requests.get(url)
-        condition = response.json()["weather"][0]["main"].lower()
-        return "sunny" if "clear" in condition else "cloudy"
+        data = response.json()
+        temp = data["main"]["temp"]
+        wind = data["wind"]["speed"]
+        condition = data["weather"][0]["main"].lower()
+        weather = "sunny" if "clear" in condition else "cloudy"
+        return weather, temp, wind
     except:
-        return "unknown"
+        return "unknown", None, None
 
-# --- Streamlit App ---
+# --- Streamlit App UI ---
 st.set_page_config(page_title="ClearCast", layout="centered")
-st.title("🎣 ClearCast – Smart Lure Picker")
+st.title("🎣 ClearCast – Smart Lure Picker + Catch Log")
 
-lake = st.selectbox("Select Lake", list(lake_coords.keys()))
-season = st.selectbox("Season", ["spring", "summer"])
-clarity = st.selectbox("Water Clarity", ["clear", "stained"])
+tabs = st.tabs(["Lure Picker", "Catch Log"])
 
-if st.button("Get Weather"):
-    lat, lon = lake_coords[lake]
-    weather = get_weather(lat, lon)
-    st.success(f"Current weather at {lake}: **{weather}**")
-else:
-    weather = "sunny"
+# --- Tab 1: Lure Picker ---
+with tabs[0]:
+    lake = st.selectbox("Select Lake", list(lake_coords.keys()))
+    season = st.selectbox("Season", ["spring", "summer"])
+    clarity = st.selectbox("Water Clarity", ["clear", "stained"])
 
-if st.button("Find Lures"):
-    if lake in lake_data:
-        if season in lake_data[lake]:
-            if clarity in lake_data[lake][season]:
-                if weather in lake_data[lake][season][clarity]:
-                    lures = lake_data[lake][season][clarity][weather]
-                    st.markdown("### Recommended Lures:")
-                    for lure in lures:
-                        st.write(f"- {lure}")
-                else:
-                    st.warning("No data for that weather condition. Try sunny or cloudy.")
-            else:
-                st.warning("No data for that water clarity.")
-        else:
-            st.warning("No data for that season.")
+    if st.button("Get Weather"):
+        lat, lon = lake_coords[lake]
+        weather, temp, wind = get_weather(lat, lon)
+        st.success(f"Weather at {lake}: **{weather}**, {temp}°F, Wind {wind} mph")
     else:
-        st.warning("No data for that lake.")
+        weather = "sunny"
+
+    if st.button("Find Lures"):
+        try:
+            lures = lake_data[lake][season][clarity][weather]
+            st.markdown("### Recommended Lures:")
+            for lure in lures:
+                st.write(f"- {lure}")
+        except KeyError:
+            st.warning("No lure data for that combination.")
+
+# --- Tab 2: Catch Log ---
+with tabs[1]:
+    st.subheader("Log a Catch")
+    catch_date = st.date_input("Date", datetime.date.today())
+    log_lake = st.selectbox("Lake", list(lake_coords.keys()), key="log_lake")
+    lure_used = st.text_input("Lure Used")
+    weight = st.text_input("Fish Weight (lbs)", placeholder="optional")
+    notes = st.text_area("Notes")
+
+    if st.button("Save Catch"):
+        st.session_state["catch_log"].append({
+            "date": catch_date,
+            "lake": log_lake,
+            "lure": lure_used,
+            "weight": weight,
+            "notes": notes
+        })
+        st.success("Catch logged successfully!")
+
+    if st.session_state["catch_log"]:
+        st.subheader("Catch History")
+        for entry in reversed(st.session_state["catch_log"]):
+            st.markdown(f"""
+                **{entry['date']} – {entry['lake']}**
+                - Lure: *{entry['lure']}*
+                - Weight: {entry['weight']} lbs
+                - Notes: {entry['notes']}
+                ---
+            """)

@@ -14,7 +14,6 @@ lake_coords = {
     "Lake Murray": (34.0490, -81.2162)
 }
 
-# Initialize catch log storage
 if "catch_log" not in st.session_state:
     st.session_state["catch_log"] = []
 
@@ -31,7 +30,6 @@ def get_weather(lat, lon):
     except:
         return "unknown", None, None
 
-# Define universal lure data
 lake_data = {}
 spring = {
     "spring": {
@@ -98,21 +96,20 @@ winter = {
     }
 }
 
-lake_names = list(lake_coords.keys())
-for lake in lake_names:
+for lake in lake_coords:
     lake_data[lake] = {}
     lake_data[lake].update(spring)
     lake_data[lake].update(summer)
     lake_data[lake].update(fall)
     lake_data[lake].update(winter)
 
-# --- Streamlit Interface ---
-st.set_page_config(page_title="ClearCast", layout="centered")
-st.title("🎣 ClearCast – Smart Lure Picker + Catch Log")
+# --- LureIQ App UI ---
+st.set_page_config(page_title="LureIQ", layout="centered")
+st.title("🎣 LureIQ – Smart Lure Picker + Catch Log")
 
 tabs = st.tabs(["Lure Picker", "Catch Log"])
 
-# --- LURE PICKER TAB ---
+# --- LURE PICKER ---
 with tabs[0]:
     lake = st.selectbox("Select Lake", list(lake_coords.keys()))
     season = st.selectbox("Season", ["spring", "summer", "fall", "winter"])
@@ -138,11 +135,11 @@ with tabs[0]:
         else:
             st.info("Try another combination or check back later.")
 
-# --- CATCH LOG TAB ---
+# --- CATCH LOG ---
 with tabs[1]:
     st.subheader("Log a Catch")
     catch_date = st.date_input("Date", datetime.date.today())
-    log_lake = st.selectbox("Lake", lake_names, key="log_lake")
+    log_lake = st.selectbox("Lake", list(lake_coords.keys()), key="log_lake")
     lure_used = st.text_input("Lure Used")
     weight = st.text_input("Fish Weight (lbs)", placeholder="optional")
     notes = st.text_area("Notes")

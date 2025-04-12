@@ -1,3 +1,4 @@
+
 import streamlit as st
 import requests
 import datetime
@@ -66,7 +67,6 @@ lure_set = {
 for lake in lake_coords:
     lake_data[lake] = lure_set
 
-# --- Streamlit UI ---
 st.set_page_config(page_title="LureIQ", layout="centered")
 st.title("🎣 LureIQ – Smart Lure Picker + Catch Log")
 

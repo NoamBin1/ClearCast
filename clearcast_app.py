@@ -14,7 +14,6 @@ lake_coords = {
     "Lake Murray": (34.0490, -81.2162)
 }
 
-# Basic example using in-memory list. Replace with database or file later if needed.
 if "catch_log" not in st.session_state:
     st.session_state["catch_log"] = []
 
@@ -31,17 +30,34 @@ def get_weather(lat, lon):
     except:
         return "unknown", None, None
 
+# Placeholder for full lake_data (can be expanded)
+lake_data = {
+    "Lake Keowee": {
+        "spring": {
+            "clear": {
+                "sunny": ["Swimbaits", "Jerkbaits", "Ned rig"],
+                "cloudy": ["Spinnerbaits", "Chatterbaits", "Finesse jigs"]
+            }
+        },
+        "summer": {
+            "clear": {
+                "sunny": ["Drop shot", "Shaky head", "Topwater (early/late)"],
+                "cloudy": ["Swim jigs", "Underspins", "Flukes"]
+            }
+        }
+    }
+}
+
 # --- Streamlit App UI ---
 st.set_page_config(page_title="ClearCast", layout="centered")
 st.title("🎣 ClearCast – Smart Lure Picker + Catch Log")
 
 tabs = st.tabs(["Lure Picker", "Catch Log"])
 
-# --- Tab 1: Lure Picker ---
 with tabs[0]:
     lake = st.selectbox("Select Lake", list(lake_coords.keys()))
-    season = st.selectbox("Season", ["spring", "summer"])
-    clarity = st.selectbox("Water Clarity", ["clear", "stained"])
+    season = st.selectbox("Season", ["spring", "summer", "fall", "winter"])
+    clarity = st.selectbox("Water Clarity", ["clear", "stained", "murky"])
 
     if st.button("Get Weather"):
         lat, lon = lake_coords[lake]
@@ -51,15 +67,23 @@ with tabs[0]:
         weather = "sunny"
 
     if st.button("Find Lures"):
+        lures = []
         try:
             lures = lake_data[lake][season][clarity][weather]
+        except KeyError:
+            if clarity == "murky":
+                lures = ["Black/blue jigs", "Loud crankbaits", "Dark spinnerbaits"]
+            elif season == "fall":
+                lures = ["Squarebill crankbaits", "Buzzbaits", "Topwater walking baits"]
+            elif season == "winter":
+                lures = ["Blade baits", "Jerkbaits", "Jigs near structure"]
+        if lures:
             st.markdown("### Recommended Lures:")
             for lure in lures:
                 st.write(f"- {lure}")
-        except KeyError:
-            st.warning("No lure data for that combination.")
+        else:
+            st.warning("No lure data found for that combination yet.")
 
-# --- Tab 2: Catch Log ---
 with tabs[1]:
     st.subheader("Log a Catch")
     catch_date = st.date_input("Date", datetime.date.today())
@@ -88,3 +112,4 @@ with tabs[1]:
                 - Notes: {entry['notes']}
                 ---
             """)
+        
